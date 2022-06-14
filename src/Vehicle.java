@@ -1,6 +1,6 @@
 public abstract class Vehicle {
     protected int num_chassis;
-    protected int registration_num;
+    protected String registration_num;
     protected int num_horsepower;
     protected int power;
     protected String vehicle_manufacturer;
@@ -34,11 +34,11 @@ public abstract class Vehicle {
         this.num_chassis = num_chassis;
     }
 
-    public int getRegistration_num() {
+    public String getRegistration_num() {
         return registration_num;
     }
 
-    public void setRegistration_num(int registration_num) {
+    public void setRegistration_num(String registration_num) {
         this.registration_num = registration_num;
     }
 

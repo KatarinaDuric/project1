@@ -5,6 +5,18 @@ public abstract class Vehicle {
     protected int power;
     protected String vehicle_manufacturer;
     protected int mileage;
+    private Object Exit;
+
+    public int getRegistration_price() {
+        return registration_price;
+    }
+
+    public void setRegistration_price(int registration_price) {
+        this.registration_price = registration_price;
+    }
+
+    protected int registration_price;
+
     public abstract float calculateRegistration();
 
     protected boolean isRegistered;
@@ -16,6 +28,10 @@ public abstract class Vehicle {
 
     public void setDeleteVehicle(boolean deleteVehicle) {
         this.deleteVehicle = deleteVehicle;
+    }
+    public boolean ExitProgramme() {
+        this.Exit = Exit;
+        return true;
     }
 
     public boolean isRegistered() {

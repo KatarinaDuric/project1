@@ -1,6 +1,18 @@
 class Truck extends Vehicle {
+    @Override
+    public String toString() {
+        return "This truck's information is{" +
+                "max_load_capacity=" + max_load_capacity +
+                ", trailer_length=" + trailer_length +
+                '}';
+    }
+
     private int max_load_capacity;
     private int trailer_length;
+
+    Truck() {
+
+    }
 
     public int getMax_load_capacity() {
         return max_load_capacity;

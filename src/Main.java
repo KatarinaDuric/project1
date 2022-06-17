@@ -29,7 +29,7 @@ class Main {
                     "4. Registering a vehicle\n" +
                     "5. Deleting a vehicle from the system\n" +
                     "6. Vehicle Search\n" +
-                    "7. Exit");
+                    "7. Exit\n");
             ;
             String choice = sc.nextLine();
 
@@ -72,9 +72,8 @@ class Main {
 
             while (scanner.hasNextLine()) {
                 String tempObject = scanner.nextLine();
-                System.out.println(tempObject);
                 String[] values = tempObject.strip().split(",");
-                if (values.length==6) {
+                if (values.length==7) {
                     Motorcycle motorcycle = new Motorcycle();
                     motorcycle.setNum_chassis(Integer.parseInt(values[0]));
                     motorcycle.setRegistration_num(values[1]);
@@ -82,10 +81,16 @@ class Main {
                     motorcycle.setPower(Integer.parseInt(values[3]));
                     motorcycle.setMileage(Integer.parseInt(values[5]));
                     motorcycle.setVehicle_manufacturer(values[4]);
+                    if(values[6].equals("false")){
+                        motorcycle.setRegistered(false);
+                    }
+                    else{
+                        motorcycle.setRegistered(true);
+                    }
                     vehicles.add(motorcycle);
                 } else{
                     try{
-                        int temp= Integer.parseInt(values[7]);
+                        int temp= Integer.parseInt(values[8]);
                         Truck truck = new Truck();
                         truck.setNum_chassis(Integer.parseInt(values[0]));
                         truck.setRegistration_num(values[1]);
@@ -93,12 +98,18 @@ class Main {
                         truck.setPower(Integer.parseInt(values[3]));
                         truck.setMileage(Integer.parseInt(values[5]));
                         truck.setVehicle_manufacturer(values[4]);
-                        truck.setMax_load_capacity(Integer.parseInt(values[6]));
-                        truck.setTrailer_length(Integer.parseInt(values[7]));
+                        truck.setMax_load_capacity(Integer.parseInt(values[7]));
+                        truck.setTrailer_length(Integer.parseInt(values[8]));
+                        if(values[6].equals("false")){
+                            truck.setRegistered(false);
+                        }
+                        else{
+                            truck.setRegistered(true);
+                        }
                         vehicles.add(truck);
 
                     }
-                    catch(Exception e){
+                    catch(Exception e) {
                         Car car = new Car();
                         car.setNum_chassis(Integer.parseInt(values[0]));
                         car.setRegistration_num(values[1]);
@@ -106,11 +117,16 @@ class Main {
                         car.setPower(Integer.parseInt(values[3]));
                         car.setMileage(Integer.parseInt(values[5]));
                         car.setVehicle_manufacturer(values[4]);
-                        car.setNum_of_doors(Integer.parseInt(values[6]));
-                        car.setCar_type(values[7]);
+                        car.setNum_of_doors(Integer.parseInt(values[7]));
+                        car.setCar_type(values[8]);
+                        if(values[6].equals("false")){
+                            car.setRegistered(false);
+                        }
+                        else{
+                            car.setRegistered(true);
+                        }
                         vehicles.add(car);
                     }
-                        System.out.println("This is car");
                     }
 
                 }
@@ -127,18 +143,18 @@ class Main {
             if (vehicle instanceof Motorcycle) {
                 Motorcycle motorcycle = (Motorcycle) vehicle;
                 vehiclesToSave += motorcycle.getNum_chassis() + "," + motorcycle.getRegistration_num() + "," + motorcycle.getNum_horsepower() + "," +
-                        motorcycle.getPower() + "," + motorcycle.getVehicle_manufacturer() + "," + motorcycle.getMileage() + "\n";
+                        motorcycle.getPower() + "," + motorcycle.getVehicle_manufacturer() + "," + motorcycle.getMileage() +","+motorcycle.isRegistered() + "\n";
             }
             if (vehicle instanceof Car) {
                 Car car = (Car) vehicle;
                 vehiclesToSave += car.getNum_chassis() + "," + car.getRegistration_num() + "," + car.getNum_horsepower() + "," +
-                        car.getPower() + "," + car.getVehicle_manufacturer() + "," + car.getMileage() + "," + car.getNum_of_doors() + "," +
+                        car.getPower() + "," + car.getVehicle_manufacturer() + "," + car.getMileage() +","+car.isRegistered() + "," + car.getNum_of_doors() + "," +
                         car.getCar_type() + "\n";
             }
             if (vehicle instanceof Truck) {
                 Truck truck = (Truck) vehicle;
                 vehiclesToSave += truck.getNum_chassis() + "," + truck.getRegistration_num() + "," + truck.getNum_horsepower() + "," +
-                        truck.getPower() + "," + truck.getVehicle_manufacturer() + "," + truck.getMileage() + "," + truck.getMax_load_capacity() + "," +
+                        truck.getPower() + "," + truck.getVehicle_manufacturer() + "," + truck.getMileage() +","+truck.isRegistered()+ "," + truck.getMax_load_capacity() + "," +
                         truck.getTrailer_length() + "\n";
             }
 
@@ -225,7 +241,7 @@ class Main {
         HashMap<Integer, Integer> unr_vehicles_and_prices = new HashMap<Integer, Integer>();
         for(Vehicle vehicle : vehicles) {
             if (!vehicle.isRegistered()){
-                unr_vehicles_and_prices.put(vehicle.num_chassis, vehicle.registration_price);
+                unr_vehicles_and_prices.put(vehicle.num_chassis, (int)vehicle.calculateRegistration());
                 unregistered_vehicles.add(vehicle);
             }
         }
@@ -236,8 +252,6 @@ class Main {
         System.out.println("Choose the vehicle you want to register by entering its number of chassis:");
         int num_chassis = Integer.parseInt(sc.nextLine());
         int price = unr_vehicles_and_prices.get(num_chassis);
-//        int numC = vehicles.get(num_chassis);
-        boolean isChosen = true;
         for (Vehicle vehicle: vehicles) {
             if (vehicle.getNum_chassis() == num_chassis) {
                 vehicle.setRegistered(true);
@@ -263,18 +277,17 @@ class Main {
 
     }
 
-    public static void searchVehicles(){
+    public static void searchVehicles() {
         System.out.println("Enter the manufacturer of the vehicle you are interested in.");
         String manufacturer = (sc.nextLine());
         for (Vehicle vehicle : vehicles) {
             if (vehicle.vehicle_manufacturer.equals(manufacturer)) {
                 System.out.println(vehicle.toString());
 
-        }
-
-
-
+            }
 
 
         }
+
+    }
 }

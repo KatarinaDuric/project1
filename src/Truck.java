@@ -2,6 +2,15 @@ class Truck extends Vehicle {
     @Override
     public String toString() {
         return "This truck's information is{" +
+                "num_chassis=" + num_chassis +
+                ", registration_num='" + registration_num + '\'' +
+                ", num_horsepower=" + num_horsepower +
+                ", power=" + power +
+                ", vehicle_manufacturer='" + vehicle_manufacturer + '\'' +
+                ", mileage=" + mileage +
+                ", registration_price=" + registration_price +
+                ", isRegistered=" + isRegistered +
+                ", deleteVehicle=" + deleteVehicle +
                 "max_load_capacity=" + max_load_capacity +
                 ", trailer_length=" + trailer_length +
                 '}';

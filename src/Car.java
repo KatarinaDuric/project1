@@ -2,6 +2,15 @@ class Car extends Vehicle {
     @Override
     public String toString() {
         return "This car's information is{" +
+                "num_chassis=" + num_chassis +
+                ", registration_num='" + registration_num + '\'' +
+                ", num_horsepower=" + num_horsepower +
+                ", power=" + power +
+                ", vehicle_manufacturer='" + vehicle_manufacturer + '\'' +
+                ", mileage=" + mileage +
+                ", registration_price=" + registration_price +
+                ", isRegistered=" + isRegistered +
+                ", deleteVehicle=" + deleteVehicle +
                 "num_of_doors=" + num_of_doors +
                 ", car_type='" + car_type + '\'' +
                 '}';

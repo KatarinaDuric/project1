@@ -21,7 +21,7 @@ class Main {
 
 
         while (true) {
-            System.out.println("Welcome to system for registration of vehicles.Input what type of vehicle you want" +
+            System.out.println("Welcome to system for registration of vehicles.Input what type of vehicle you want " +
                     "to register\n" +
                     "1. Motorcycle\n" +
                     "2. Car\n" +
@@ -88,6 +88,14 @@ class Main {
                         motorcycle.setRegistered(true);
                     }
                     vehicles.add(motorcycle);
+                    if(values[7].equals("false")){
+                        motorcycle.setDeleteVehicle(false);
+                    }
+                    else{
+                        motorcycle.setDeleteVehicle(true);
+                        vehicles.remove(motorcycle);
+                    }
+
                 } else{
                     try{
                         int temp= Integer.parseInt(values[8]);
@@ -98,8 +106,8 @@ class Main {
                         truck.setPower(Integer.parseInt(values[3]));
                         truck.setMileage(Integer.parseInt(values[5]));
                         truck.setVehicle_manufacturer(values[4]);
-                        truck.setMax_load_capacity(Integer.parseInt(values[7]));
-                        truck.setTrailer_length(Integer.parseInt(values[8]));
+                        truck.setMax_load_capacity(Integer.parseInt(values[8]));
+                        truck.setTrailer_length(Integer.parseInt(values[9]));
                         if(values[6].equals("false")){
                             truck.setRegistered(false);
                         }
@@ -107,6 +115,14 @@ class Main {
                             truck.setRegistered(true);
                         }
                         vehicles.add(truck);
+                        if(values[7].equals("false")){
+                            truck.setDeleteVehicle(false);
+                        }
+                        else{
+                            truck.setDeleteVehicle(true);
+                            vehicles.remove(truck);
+                        }
+
 
                     }
                     catch(Exception e) {
@@ -117,8 +133,8 @@ class Main {
                         car.setPower(Integer.parseInt(values[3]));
                         car.setMileage(Integer.parseInt(values[5]));
                         car.setVehicle_manufacturer(values[4]);
-                        car.setNum_of_doors(Integer.parseInt(values[7]));
-                        car.setCar_type(values[8]);
+                        car.setNum_of_doors(Integer.parseInt(values[8]));
+                        car.setCar_type(values[9]);
                         if(values[6].equals("false")){
                             car.setRegistered(false);
                         }
@@ -126,6 +142,13 @@ class Main {
                             car.setRegistered(true);
                         }
                         vehicles.add(car);
+                        if(values[7].equals("false")){
+                            car.setDeleteVehicle(false);
+                        }
+                        else{
+                            car.setDeleteVehicle(true);
+                            vehicles.remove(car);
+                        }
                     }
                     }
 
@@ -143,18 +166,18 @@ class Main {
             if (vehicle instanceof Motorcycle) {
                 Motorcycle motorcycle = (Motorcycle) vehicle;
                 vehiclesToSave += motorcycle.getNum_chassis() + "," + motorcycle.getRegistration_num() + "," + motorcycle.getNum_horsepower() + "," +
-                        motorcycle.getPower() + "," + motorcycle.getVehicle_manufacturer() + "," + motorcycle.getMileage() +","+motorcycle.isRegistered() + "\n";
+                        motorcycle.getPower() + "," + motorcycle.getVehicle_manufacturer() + "," + motorcycle.getMileage() +","+motorcycle.isRegistered() + "," + motorcycle.isDeleteVehicle() + "\n";
             }
             if (vehicle instanceof Car) {
                 Car car = (Car) vehicle;
                 vehiclesToSave += car.getNum_chassis() + "," + car.getRegistration_num() + "," + car.getNum_horsepower() + "," +
-                        car.getPower() + "," + car.getVehicle_manufacturer() + "," + car.getMileage() +","+car.isRegistered() + "," + car.getNum_of_doors() + "," +
+                        car.getPower() + "," + car.getVehicle_manufacturer() + "," + car.getMileage() +","+car.isRegistered() + "," + car.isDeleteVehicle() + "," + car.getNum_of_doors() + "," +
                         car.getCar_type() + "\n";
             }
             if (vehicle instanceof Truck) {
                 Truck truck = (Truck) vehicle;
                 vehiclesToSave += truck.getNum_chassis() + "," + truck.getRegistration_num() + "," + truck.getNum_horsepower() + "," +
-                        truck.getPower() + "," + truck.getVehicle_manufacturer() + "," + truck.getMileage() +","+truck.isRegistered()+ "," + truck.getMax_load_capacity() + "," +
+                        truck.getPower() + "," + truck.getVehicle_manufacturer() + "," + truck.getMileage() +","+truck.isRegistered()+ "," +truck.isDeleteVehicle() + "," + truck.getMax_load_capacity() + "," +
                         truck.getTrailer_length() + "\n";
             }
 
